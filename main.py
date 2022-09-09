@@ -47,9 +47,10 @@ class Room:
 class Game:
     def __init__(self) -> None:
         self.attempts = 0
-        objects = self.create_objects
-        self.room = Room(213, objects)
+        objects = self.create_objects()
+        self.room = Room(7320, objects)
 
+    # Creates 5 game objects with enough information to guess the code
     def create_objects(self):
         return [
             GameObject(
@@ -71,10 +72,22 @@ class Game:
                 "Bowl of soup",
                 "It appears to be tomato soup.",
                 "It has cooled down to room temperature.",
-                "You detect 3 different herbs and spices."),
+                "You detect 7 different herbs and spices."),
             GameObject(
                 "Clock",
                 "The hour hand is pointing towards the soup, the minute hand towards the desk and the second hand towards the jeans.",
                 "The battery compartment is open and empty.",
                 "It smells of plastic.")
         ]
+
+    def take_turn(self):
+        prompt = self.get_room_prompt()
+        selection = input(prompt)
+        print(selection)
+
+    def get_room_prompt(self):
+        msg = "Enter the 4 digit lock code or choose an item to interact with:\n"
+        names = self.room.get_game_object_names()
+        for name in names:
+            msg += f"{name}\n"
+        return msg
