@@ -27,7 +27,10 @@ class GameObject:
 
 
 class Room:
+    # escape_code = 0
+    # game_objects = []
     # Initializes an instance of a Room with a escape_code and game_objects
+
     def __init__(self, escape_code: int, game_objects) -> None:
         self.escape_code = escape_code
         self.game_objects = game_objects
@@ -91,3 +94,9 @@ class Game:
         for name in names:
             msg += f"{name}\n"
         return msg
+
+
+# if __name__ == "__main__":
+game = Game()
+# game.take_turn()
+print(game.room.game_objects)
