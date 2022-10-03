@@ -27,8 +27,8 @@ class GameObject:
 
 
 class Room:
-    # escape_code = 0
-    # game_objects = []
+    escape_code = 0
+    game_objects = []
     # Initializes an instance of a Room with a escape_code and game_objects
 
     def __init__(self, escape_code: int, game_objects) -> None:
@@ -42,8 +42,8 @@ class Room:
     # Gets a list of just the names of game_objects
     def get_game_object_names(self):
         names = []
-        for name in self.game_objects:
-            names.append(name)
+        for object in self.game_objects:
+            names.append(object.name)
         return names
 
 
@@ -80,23 +80,22 @@ class Game:
                 "Clock",
                 "The hour hand is pointing towards the soup, the minute hand towards the desk and the second hand towards the jeans.",
                 "The battery compartment is open and empty.",
-                "It smells of plastic.")
+                "It smells of plastic."),
         ]
 
     def take_turn(self):
         prompt = self.get_room_prompt()
         selection = input(prompt)
-        print(selection)
+        return selection
 
     def get_room_prompt(self):
         msg = "Enter the 4 digit lock code or choose an item to interact with:\n"
         names = self.room.get_game_object_names()
-        for name in names:
-            msg += f"{name}\n"
+        for i, name in enumerate(names):
+            msg += f"{i+1}. {name}\n"
         return msg
 
 
 # if __name__ == "__main__":
 game = Game()
-# game.take_turn()
-print(game.room.game_objects)
+game.take_turn()    # testing
